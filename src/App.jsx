@@ -2,12 +2,14 @@ import React, { useState, useEffect } from 'react';
 import './App.css';
 import Display from './components/Display';
 import Keypad from './components/Keypad';
+import MusicPlayer from './components/MusicPlayer';
 import { TypeAnimation } from 'react-type-animation';
 
 function App() {
   const [input, setInput] = useState('0');
   const [showCelebration, setShowCelebration] = useState(false); // Trạng thái để hiển thị hiệu ứng sân khấu
   const [showEasterEgg, setShowEasterEgg] = useState(false); // Trạng thái để hiển thị easter egg
+  const [playMusic, setPlayMusic] = useState(false);
 
   // Tính năng easter egg: Kiểm tra nếu nhập 12042005, 1204 hoặc 12+04
   const checkEasterEgg = (input) => {
@@ -24,6 +26,7 @@ function App() {
       if (!checkEasterEgg(input)) {
         setShowCelebration(true);  // Hiển thị hiệu ứng sân khấu
         setShowEasterEgg(false);
+        setPlayMusic(true);
       }
     } else if (value === 'C') {
       setInput('0');
@@ -33,12 +36,15 @@ function App() {
       setInput((prev) => (prev === '0' ? value : prev + value));
       setShowCelebration(false);  // Tắt hiệu ứng khi có thao tác khác
       setShowEasterEgg(false);
+      setPlayMusic(false);
     }
   };
 
   return (
     <div className={`min-h-screen ${showCelebration ? 'bg-black' : 'bg-gray-900'} flex items-center justify-center transition-all duration-1000`}>
-      {showCelebration ? (
+            <MusicPlayer play={playMusic}/>
+
+    {showCelebration ? (
         <div className="celebration-screen">
           <TypeAnimation
             sequence={[

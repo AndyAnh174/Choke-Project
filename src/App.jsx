@@ -9,6 +9,7 @@ function App() {
   const [showCelebration, setShowCelebration] = useState(false); // Trạng thái để hiển thị hiệu ứng sân khấu
   const [currentMessageIndex, setCurrentMessageIndex] = useState(0); // Quản lý chỉ số thông điệp hiện tại
 
+  // Mảng các thông điệp tuần tự xuất hiện
   const messages = [
     "Chúc Mừng 20/10! 🎉",
     "You are beautiful 🌸",
@@ -17,10 +18,22 @@ function App() {
     "You'll do what you want 🚀"
   ];
 
+  // Tính năng easter egg: Kiểm tra nếu nhập 12042005, 1204 hoặc 12+04
+  const checkEasterEgg = (input) => {
+    if (input === '12042005' || input === '1204' || input === '12+04') {
+      setMessage('Việt Anh Yêu Hồng Nhung ❤️');
+      setShowCelebration(true);
+      return true;
+    }
+    return false;
+  };
+
   const handleButtonClick = (value) => {
     if (value === '=') {
-      setShowCelebration(true);  // Hiển thị hiệu ứng sân khấu
-      setMessage(messages[currentMessageIndex]);
+      if (!checkEasterEgg(input)) {
+        setShowCelebration(true);  // Hiển thị hiệu ứng sân khấu
+        setMessage(messages[currentMessageIndex]);
+      }
     } else if (value === 'C') {
       setInput('0');
       setMessage('');
@@ -32,14 +45,15 @@ function App() {
     }
   };
 
+  // Hiệu ứng hiển thị tuần tự các thông điệp
   useEffect(() => {
     if (showCelebration && currentMessageIndex < messages.length) {
       const timer = setTimeout(() => {
         setCurrentMessageIndex((prevIndex) => prevIndex + 1);
         setMessage(messages[currentMessageIndex]);
-      }, 3000);
+      }, 5000); // Mỗi thông điệp xuất hiện trong 5 giây
 
-      return () => clearTimeout(timer);
+      return () => clearTimeout(timer); // Clear timeout nếu component unmount
     }
   }, [showCelebration, currentMessageIndex, messages]);
 

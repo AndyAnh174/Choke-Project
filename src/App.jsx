@@ -20,7 +20,7 @@ function App() {
 
   // Tính năng easter egg: Kiểm tra nếu nhập 12042005, 1204 hoặc 12+04
   const checkEasterEgg = (input) => {
-    if (input === '04122005' || input === '0412' || input === '04+12') {
+    if (input === '4122005' || input === '412' || input === '4+12' || input === '12042005' || input === '1204' || input === '12+04') {
       setMessage('Việt Anh Yêu Hồng Nhung ❤️');
       setShowCelebration(true);
       return true;

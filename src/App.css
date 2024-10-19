@@ -57,6 +57,14 @@
 
 .celebration-text {
   color: #f8b400;
+  font-size: 4rem;
+  font-family: 'Pacifico', cursive; /* Áp dụng font Pacifico */
+  animation: fadeInText 2s ease-in-out forwards;
+  opacity: 0;
+}
+
+.celebration-text {
+  color: #f8b400;
   font-size: 3rem;
   font-family: 'Pacifico', cursive;
 }
@@ -77,6 +85,11 @@
   display: flex;
   gap: 20px;
   margin-top: 20px;
+}
+
+.flower-animation .flower {
+  font-size: 2.5rem;
+  font-family: 'Pacifico', cursive; /* Áp dụng font Pacifico cho hoa */
 }
 
 .flower {
@@ -117,4 +130,12 @@
   font-family: 'Pacifico', cursive;
   animation: fadeInText 2s ease-in-out forwards;
   opacity: 0;
+}
+
+h1 {
+  font-family: 'Dancing Script', cursive;
+}
+
+h1.celebration-text {
+  font-family: 'Pacifico', cursive;
 }
